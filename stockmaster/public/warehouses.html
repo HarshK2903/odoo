@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warehouses - StockMaster</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="sidebar-header"><h2>📦 StockMaster</h2></div>
+        <nav class="sidebar-nav">
+          <a href="/dashboard.html" class="nav-item"
+            ><span>📊</span> Dashboard</a
+          >
+          <a href="/products.html" class="nav-item"><span>📦</span> Products</a>
+          <a href="/receipts.html" class="nav-item"><span>📥</span> Receipts</a>
+          <a href="/deliveries.html" class="nav-item"
+            ><span>📤</span> Deliveries</a
+          >
+          <a href="/transfers.html" class="nav-item"
+            ><span>🔄</span> Transfers</a
+          >
+          <a href="/adjustments.html" class="nav-item"
+            ><span>⚙️</span> Adjustments</a
+          >
+          <a href="/warehouses.html" class="nav-item active"
+            ><span>🏭</span> Warehouses</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <a href="/profile.html" class="nav-item"><span>👤</span> Profile</a>
+          <a href="#" id="logoutBtn" class="nav-item"><span>🚪</span> Logout</a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="content-header">
+          <h1>Warehouses</h1>
+          <button id="addWarehouseBtn" class="btn btn-primary">
+            + Add Warehouse
+          </button>
+        </header>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="warehousesTable">
+                  <tr>
+                    <td colspan="6" class="text-center">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Warehouse Modal -->
+    <div id="warehouseModal" class="modal">
+      <div class="modal-content">
+        <h3 id="modalTitle">Add Warehouse</h3>
+        <form id="warehouseForm">
+          <input type="hidden" id="warehouseId" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name *</label>
+              <input type="text" id="warehouseName" required />
+            </div>
+            <div class="form-group">
+              <label>Code *</label>
+              <input type="text" id="warehouseCode" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Type *</label>
+              <select id="warehouseType" required>
+                <option value="main">Main</option>
+                <option value="production">Production</option>
+                <option value="storage">Storage</option>
+                <option value="rack">Rack</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" id="warehouseLocation" />
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button
+              type="button"
+              class="btn btn-outline"
+              onclick="closeModal()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/warehouses.js"></script>
+  </body>
+</html>

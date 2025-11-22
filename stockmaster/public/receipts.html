@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipts - StockMaster</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="sidebar-header"><h2>📦 StockMaster</h2></div>
+        <nav class="sidebar-nav">
+          <a href="/dashboard.html" class="nav-item"
+            ><span>📊</span> Dashboard</a
+          >
+          <a href="/products.html" class="nav-item"><span>📦</span> Products</a>
+          <a href="/receipts.html" class="nav-item active"
+            ><span>📥</span> Receipts</a
+          >
+          <a href="/deliveries.html" class="nav-item"
+            ><span>📤</span> Deliveries</a
+          >
+          <a href="/transfers.html" class="nav-item"
+            ><span>🔄</span> Transfers</a
+          >
+          <a href="/adjustments.html" class="nav-item"
+            ><span>⚙️</span> Adjustments</a
+          >
+          <a href="/warehouses.html" class="nav-item"
+            ><span>🏭</span> Warehouses</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <a href="/profile.html" class="nav-item"><span>👤</span> Profile</a>
+          <a href="#" id="logoutBtn" class="nav-item"><span>🚪</span> Logout</a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="content-header">
+          <h1>Receipts (Incoming Stock)</h1>
+          <button id="addReceiptBtn" class="btn btn-primary">
+            + New Receipt
+          </button>
+        </header>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="filters">
+              <select id="filterStatus" class="form-control">
+                <option value="">All Status</option>
+                <option value="draft">Draft</option>
+                <option value="waiting">Waiting</option>
+                <option value="ready">Ready</option>
+                <option value="done">Done</option>
+                <option value="canceled">Canceled</option>
+              </select>
+              <select id="filterWarehouse" class="form-control">
+                <option value="">All Warehouses</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Receipt #</th>
+                    <th>Supplier</th>
+                    <th>Warehouse</th>
+                    <th>Items</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="receiptsTable">
+                  <tr>
+                    <td colspan="7" class="text-center">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal">
+      <div class="modal-content modal-large">
+        <h3 id="modalTitle">New Receipt</h3>
+        <form id="receiptForm">
+          <input type="hidden" id="receiptId" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>Supplier *</label>
+              <input type="text" id="receiptSupplier" required />
+            </div>
+            <div class="form-group">
+              <label>Warehouse *</label>
+              <select id="receiptWarehouse" required></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea id="receiptNotes" rows="2"></textarea>
+          </div>
+
+          <div class="items-section">
+            <h4>Items</h4>
+            <button
+              type="button"
+              id="addItemBtn"
+              class="btn btn-secondary btn-sm"
+            >
+              + Add Item
+            </button>
+            <div id="itemsList"></div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button
+              type="button"
+              class="btn btn-outline"
+              onclick="closeModal()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/receipts.js"></script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transfers - StockMaster</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="sidebar-header"><h2>📦 StockMaster</h2></div>
+        <nav class="sidebar-nav">
+          <a href="/dashboard.html" class="nav-item"
+            ><span>📊</span> Dashboard</a
+          >
+          <a href="/products.html" class="nav-item"><span>📦</span> Products</a>
+          <a href="/receipts.html" class="nav-item"><span>📥</span> Receipts</a>
+          <a href="/deliveries.html" class="nav-item"
+            ><span>📤</span> Deliveries</a
+          >
+          <a href="/transfers.html" class="nav-item active"
+            ><span>🔄</span> Transfers</a
+          >
+          <a href="/adjustments.html" class="nav-item"
+            ><span>⚙️</span> Adjustments</a
+          >
+          <a href="/warehouses.html" class="nav-item"
+            ><span>🏭</span> Warehouses</a
+          >
+        </nav>
+        <div class="sidebar-footer">
+          <a href="/profile.html" class="nav-item"><span>👤</span> Profile</a>
+          <a href="#" id="logoutBtn" class="nav-item"><span>🚪</span> Logout</a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="content-header">
+          <h1>Internal Transfers</h1>
+          <button id="addTransferBtn" class="btn btn-primary">
+            + New Transfer
+          </button>
+        </header>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="filters">
+              <select id="filterStatus" class="form-control">
+                <option value="">All Status</option>
+                <option value="draft">Draft</option>
+                <option value="waiting">Waiting</option>
+                <option value="ready">Ready</option>
+                <option value="done">Done</option>
+                <option value="canceled">Canceled</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Transfer #</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Items</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="transfersTable">
+                  <tr>
+                    <td colspan="7" class="text-center">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Transfer Modal -->
+    <div id="transferModal" class="modal">
+      <div class="modal-content modal-large">
+        <h3 id="modalTitle">New Transfer</h3>
+        <form id="transferForm">
+          <input type="hidden" id="transferId" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>From Warehouse *</label>
+              <select id="transferFromWarehouse" required></select>
+            </div>
+            <div class="form-group">
+              <label>To Warehouse *</label>
+              <select id="transferToWarehouse" required></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea id="transferNotes" rows="2"></textarea>
+          </div>
+
+          <div class="items-section">
+            <h4>Items</h4>
+            <button
+              type="button"
+              id="addItemBtn"
+              class="btn btn-secondary btn-sm"
+            >
+              + Add Item
+            </button>
+            <div id="itemsList"></div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button
+              type="button"
+              class="btn btn-outline"
+              onclick="closeModal()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/transfers.js"></script>
+  </body>
+</html>
